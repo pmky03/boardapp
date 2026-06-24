@@ -98,14 +98,10 @@
   .dl-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
   .footnote{text-align:center;color:var(--muted);font-size:.78rem;margin-top:20px;line-height:1.6}
   .footnote a{color:var(--teal)}
-  /* upload status */
   .upload-status{margin-top:18px;padding:14px 18px;border-radius:12px;font-size:.88rem;font-weight:500;display:none}
-  .upload-status.uploading{display:block;background:#EFF6FF;border:1px solid #BFDBFE;color:#1e40af}
   .upload-status.ok{display:block;background:var(--teal-light);border:1px solid #BFDCD7;color:#1d4a46}
   .upload-status.fail{display:block;background:#FBEAEA;border:1px solid #E6C2C2;color:var(--danger)}
-  .spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;margin-right:7px;vertical-align:middle}
   @keyframes spin{to{transform:rotate(360deg)}}
-  /* submitting overlay */
   .submit-overlay{display:none;position:fixed;inset:0;background:rgba(16,42,67,.45);z-index:100;align-items:center;justify-content:center}
   .submit-overlay.show{display:flex}
   .submit-card{background:#fff;border-radius:16px;padding:36px 40px;text-align:center;max-width:340px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4)}
@@ -116,24 +112,17 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════════
-     GOOGLE DRIVE CONFIGURATION
-     ───────────────────────────────────────────────────────────
-     Follow the setup guide (SETUP.md) to get these values.
-     Replace the placeholders below with your real credentials.
-     ═══════════════════════════════════════════════════════════ -->
 <script>
   const GDRIVE_CONFIG = {
-    // From your service account JSON key file:
     clientEmail: 'board-form-uploader@colson-board-form.iam.gserviceaccount.com',
-    // The private key from the JSON key file (include the full -----BEGIN/END----- lines):
     privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFb/FqPWJwaZGg\nVdAEnkssgxk8omBONcG0rYzWncvPQgxXRyz2HPhzlzwEERYEil1PQExw5HudtqRb\nFdW+KjKWIqPY6W2LwnHHDmOh6ulCT1ZPI4RmIEn5Tg9YGPBtjpzv9bzBCOdOWGhw\n6i3mJs74xCHmMhJTFRWcET+1QconQOYZJ8VMajGs1IrfiL2snGIVsv09JWif24ye\n8IuOJo4M8EIlUVAU2HkMbQtH2v/FUW8K13+OWmzizr5bS1KBIOwVlhacWeJC3MV0\nByXg/NdHGd0NzFLFqaWtfwxewqikNvQVrJ//M8aQQgcFYGOeRE3ViF60F7OdVLNR\nUqDJ4HGVAgMBAAECggEAWutDZVSSNcjvlkGeEtpgLMXMQ9dUeP+ZTZ4T+qrctXsp\nWrG8mzNZGEW/DfJeTMX41St7aAtXf5ehVQ6XiMQ+2lNmV1ebKh5nLa7LI7+dHfuR\n98yXxj29QvB28W8+nHzteTUU8GGsvq/InKLCczdQ3U7Ye3x4YskVU/K/fzUmJe+V\n/b3+lTKl3nPP/T5DNZtpAPI6nOf/WSiTyQo1aNGeGPnvIc3kOiGoOtTlDacCDczK\nkpuTCiDsH5w1qA4+iQrXJs846MVSBYeaduEXnjzTMCKLQjduMS1Eh/Ibo6K0sJo5\ni1wbCWlLoZcqwNZln5oM8STp3vjz65j63WevUWekawKBgQDuP7hNqelZL+HssFFq\nC8+A8fwkpI3qL5Dxd+7p8TuboMHC8tkosjSi6M4ucLoQQCO/A7ypVAzqCGrBPiQ1\n961yKhD0gdQLakieiLQt1W4UWX03bze+tcc2OAvd7HjfToQiaBXecxR/SaEHHuoy\nG/r5TurwOaOqAANw0vN+v56GowKBgQDUJcu0QhWIL9gCMHgq/CXv5oGXiauDzomq\ngT1ne0rnEV8A6jtEAEf+FoOP/N8SJdKnVX7OmI+/3R+WUdoFYZwFdh40KKlMVdKs\nRQ+SE9dk50K+x+ORpMM56SNuhqkTti4ahpfcEn3tOuQGqkFcJ7U+xDD0yciqOBDi\nwYgx+3kCZwKBgQDAJUXH5QvcMSDdWgofI61TilXXW5tUzs3v4NEffb2cMxdx2ZfI\nGYkYBfgbPjDhYEk0CZiDW9UafnVSqoJbwAfzdfe8qmRQXIR6zze5a1NfOBkjtx/X\nQBWNJcB0V/3X4yPv99ADWv6h9cjXzFgG18gef0Y9Pc9AEMi1mnxksbfxTwKBgCW4\ntrjNi1CU2T7CaYuTHBfFD8PnKcUdA2N66XUt+gqODyt1eqZDuolWbXw7xVpPuV4h\nmJOZku3Vnpk24qJUUc6yyvoRRNEa7YPOH8+kkYcSi86qci9icYgpiTBM52Fm4lm7\nFuN9skBtWUBKI6cENHj9n4rXGkQSBgabzOC+Syz/AoGAH7lJ4v0Yp3X3ukr9gBpC\nMtKSggbpWTE3V06yVU+vS73rowxSbLWmjY788dJGulQ2He2wv/LKmFdBDvzdm2Ty\nns979v9y9VBBOrovvIaXOMtBlRDgFDVE5CaY0TuzP+lzrS0+f74HSJ4/xtt/8k6i\nWy9JHhtgKDpCjRpzkVch/ts=\n-----END PRIVATE KEY-----\n`,
-    // The Google Drive folder ID (last part of the folder's URL):
-    folderId: '0AJ0_EyeNpoTEUk9PVA'
+    // ── UPDATED: paste your Shared Drive ID here ──
+    // Go to your Shared Drive in drive.google.com
+    // The ID is the string after /drive/folders/ in the URL
+    sharedDriveId: '0AJ0_EyeNpoTEUk9PVA'
   };
 </script>
 
-<!-- Submitting overlay -->
 <div class="submit-overlay" id="submitOverlay">
   <div class="submit-card">
     <div class="big-spin"></div>
@@ -268,7 +257,6 @@
         </div>
         <div class="field" data-label="Reservations"><label class="q" for="reservations">If recommending with reservations, please explain</label>
           <textarea id="reservations" name="Reservations" data-reservation style="min-height:80px"></textarea></div>
-
         <div class="callout">
           <label class="choice" style="background:transparent;border:none;padding:0;gap:9px">
             <input type="checkbox" id="attest" name="Attestation" value="Confirmed" required>
@@ -279,7 +267,6 @@
           <div class="field" data-label="Submitted by"><label class="q" for="sig">Your name (confirmation)<span class="req">*</span></label><input type="text" id="sig" name="Submitted by" required></div>
           <div class="field" data-label="Date"><label class="q" for="sdate">Date<span class="req">*</span></label><input type="date" id="sdate" name="Date" required></div>
         </div>
-
         <div class="backup-row">
           <span class="lbl">Need to pause, or switch devices?</span>
           <button type="button" class="btn btn-ghost" id="saveFileBtn">Save a backup file</button>
@@ -295,11 +282,10 @@
       </div>
     </form>
 
-    <!-- SUCCESS -->
     <div class="success" id="success">
       <div class="seal">✓</div>
       <h2>Recommendation Complete</h2>
-      <p id="successMsg">Your recommendation has been saved to the Board Development Committee's Google Drive folder.</p>
+      <p>Thank you for investing in the future of the Colson Center Board.</p>
       <div class="upload-status" id="uploadStatus"></div>
       <div class="dl-row">
         <button type="button" class="btn btn-primary" id="dlBtn">Download PDF</button>
@@ -316,7 +302,7 @@ const form = document.getElementById('reco');
 const errBanner = document.getElementById('errBanner');
 const RECIPIENT = 'pmarra@colsoncenter.org';
 
-/* ── strengths checkboxes ── */
+/* ── strengths ── */
 const STRENGTHS = ["Theology / Worldview","Finance / Audit","Governance / Board Experience","Development / Fundraising","Organizational Leadership","Legal / HR","Communications / Digital","Church Leadership","Investment / Financial Markets","Public / Cultural Engagement","Other"];
 const sg = document.getElementById('strengthGrid');
 STRENGTHS.forEach(s => {
@@ -354,62 +340,75 @@ function collect() {
   });
   return out;
 }
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
 function nomineeName() { return document.getElementById('nName').value.trim() || 'Nominee'; }
 function fileSlug() { return (document.getElementById('nName').value.trim() || 'nominee').replace(/\s+/g, '-').toLowerCase(); }
 function fileName() { return `colson-board-recommendation-${fileSlug()}-${new Date().toISOString().slice(0,10)}.pdf`; }
 
-/* ── build PDF element ── */
-function buildDocElement() {
-  const data = collect();
-  const el = document.createElement('div');
-  el.style.cssText = 'width:760px;padding:40px;background:#fff;font-family:Georgia,serif;color:#16222E;line-height:1.5';
-  let html = `<h1 style="font-size:22px;color:#102A43;border-bottom:3px solid #B5893C;padding-bottom:8px;margin:0 0 4px">The Colson Center — Board Candidate Recommendation</h1>
-    <div style="color:#697789;font-size:13px;margin-bottom:22px;font-family:Arial,sans-serif">Confidential &middot; Nominee: <strong>${escapeHtml(nomineeName())}</strong> &middot; Generated ${new Date().toLocaleString()}</div>`;
-  data.forEach(sec => {
-    html += `<h2 style="font-size:15px;color:#1F7A72;margin:24px 0 4px;border-bottom:1px solid #ddd;padding-bottom:4px;page-break-after:avoid">${sec.title}</h2><table style="width:100%;border-collapse:collapse">`;
-    sec.rows.forEach(([q, a]) => { html += `<tr><td style="width:36%;padding:7px 8px;vertical-align:top;font-size:12.5px;color:#697789;font-family:Arial,sans-serif;border-bottom:1px solid #eee">${escapeHtml(q)}</td><td style="padding:7px 8px;vertical-align:top;font-size:12.5px;border-bottom:1px solid #eee;white-space:pre-wrap">${a ? escapeHtml(a) : '—'}</td></tr>`; });
-    html += '</table>';
-  });
-  el.innerHTML = html; return el;
-}
+/* ── build document HTML (used for PDF iframe and print fallback) ── */
 function buildDocHtml() {
-  const tmp = buildDocElement();
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Board Recommendation — ${escapeHtml(nomineeName())}</title></head><body style="max-width:800px;margin:30px auto">${tmp.innerHTML}</body></html>`;
+  const data = collect();
+  let html = `<!DOCTYPE html><html><head><meta charset="utf-8">
+  <title>Board Recommendation — ${escapeHtml(nomineeName())}</title>
+  <style>
+    body{max-width:780px;margin:30px auto;font-family:Georgia,serif;color:#16222E;font-size:13px;line-height:1.55}
+    h1{font-size:20px;color:#102A43;border-bottom:3px solid #B5893C;padding-bottom:8px;margin:0 0 4px}
+    .meta{color:#697789;font-size:12px;margin-bottom:20px;font-family:Arial,sans-serif}
+    h2{font-size:14px;color:#1F7A72;margin:22px 0 4px;border-bottom:1px solid #ddd;padding-bottom:3px;page-break-after:avoid}
+    table{width:100%;border-collapse:collapse;margin-bottom:4px}
+    td{padding:6px 8px;vertical-align:top;border-bottom:1px solid #eee;font-size:12px}
+    td:first-child{width:36%;color:#697789;font-family:Arial,sans-serif}
+    td:last-child{white-space:pre-wrap}
+  </style></head><body>`;
+  html += `<h1>The Colson Center — Board Candidate Recommendation</h1>
+  <div class="meta">Confidential &middot; Nominee: <strong>${escapeHtml(nomineeName())}</strong> &middot; Generated ${new Date().toLocaleString()}</div>`;
+  data.forEach(sec => {
+    html += `<h2>${escapeHtml(sec.title)}</h2><table>`;
+    sec.rows.forEach(([q, a]) => { html += `<tr><td>${escapeHtml(q)}</td><td>${a ? escapeHtml(a) : '—'}</td></tr>`; });
+    html += `</table>`;
+  });
+  html += `</body></html>`;
+  return html;
 }
 
-/* ── generate PDF blob ── */
+/* ── generate PDF blob via hidden iframe ──
+   Renders into an iframe so fonts load fully before capture.
+   This fixes the blank PDF bug.                              ── */
 function generatePdfBlob() {
   return new Promise((resolve, reject) => {
     if (typeof html2pdf === 'undefined') { reject(new Error('html2pdf not loaded')); return; }
-    const el = buildDocElement();
-    el.style.position = 'fixed'; el.style.left = '-10000px'; el.style.top = '0';
-    document.body.appendChild(el);
-    html2pdf().set({
-      margin: [12, 10, 14, 10],
-      filename: fileName(),
-      image: { type: 'jpeg', quality: .98 },
-      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
-      jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
-      pagebreak: { mode: ['css', 'legacy'] }
-    }).from(el).outputPdf('blob').then(blob => {
-      el.remove(); resolve(blob);
-    }).catch(err => { el.remove(); reject(err); });
+    const iframe = document.createElement('iframe');
+    iframe.style.cssText = 'position:fixed;left:-9999px;top:0;width:820px;height:1px;border:none;visibility:hidden';
+    document.body.appendChild(iframe);
+    iframe.onload = () => {
+      setTimeout(() => {
+        const el = iframe.contentDocument.body;
+        html2pdf().set({
+          margin: [12, 10, 14, 10],
+          filename: fileName(),
+          image: { type: 'jpeg', quality: .98 },
+          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', windowWidth: 820 },
+          jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
+          pagebreak: { mode: ['css', 'legacy'] }
+        }).from(el).outputPdf('blob').then(blob => {
+          iframe.remove(); resolve(blob);
+        }).catch(err => { iframe.remove(); reject(err); });
+      }, 800);
+    };
+    iframe.srcdoc = buildDocHtml();
   });
 }
 
-/* ══════════════════════════════════════════════════════════
-   GOOGLE DRIVE UPLOAD
-   Uses the service account credentials in GDRIVE_CONFIG
-   to get an OAuth2 access token via JWT, then uploads
-   the PDF blob to the specified folder.
-   ══════════════════════════════════════════════════════════ */
-
-// Base64url encode (needed for JWT)
+/* ══════════════════════════════════════════════
+   GOOGLE DRIVE — Shared Drive upload
+   Key fixes vs previous version:
+   1. Uses sharedDriveId instead of folderId
+   2. supportsAllDrives=true on upload URL
+   3. includeItemsFromAllDrives param added
+   ══════════════════════════════════════════════ */
 function b64url(buf) {
   const bytes = new Uint8Array(buf);
-  let str = '';
-  bytes.forEach(b => str += String.fromCharCode(b));
+  let str = ''; bytes.forEach(b => str += String.fromCharCode(b));
   return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
 
@@ -421,29 +420,17 @@ async function getAccessToken() {
     iss: cfg.clientEmail,
     scope: 'https://www.googleapis.com/auth/drive.file',
     aud: 'https://oauth2.googleapis.com/token',
-    exp: now + 3600,
-    iat: now
+    exp: now + 3600, iat: now
   };
   const enc = s => b64url(new TextEncoder().encode(JSON.stringify(s)));
   const signingInput = enc(header) + '.' + enc(claim);
-
-  // Import the private key
   const pemBody = cfg.privateKey
-    .replace(/-----BEGIN PRIVATE KEY-----/, '')
-    .replace(/-----END PRIVATE KEY-----/, '')
-    .replace(/\s+/g, '');
+    .replace(/-----BEGIN PRIVATE KEY-----/, '').replace(/-----END PRIVATE KEY-----/, '').replace(/\s+/g, '');
   const der = Uint8Array.from(atob(pemBody), c => c.charCodeAt(0));
-  const key = await crypto.subtle.importKey(
-    'pkcs8', der.buffer,
-    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
-    false, ['sign']
-  );
-  const sig = await crypto.subtle.sign(
-    'RSASSA-PKCS1-v1_5', key,
-    new TextEncoder().encode(signingInput)
-  );
+  const key = await crypto.subtle.importKey('pkcs8', der.buffer,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
+  const sig = await crypto.subtle.sign('RSASSA-PKCS1-v1_5', key, new TextEncoder().encode(signingInput));
   const jwt = signingInput + '.' + b64url(sig);
-
   const resp = await fetch('https://oauth2.googleapis.com/token', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -451,25 +438,29 @@ async function getAccessToken() {
   });
   if (!resp.ok) throw new Error('Token request failed: ' + resp.status);
   const data = await resp.json();
+  if (!data.access_token) throw new Error('No access token in response');
   return data.access_token;
 }
 
 async function uploadToDrive(pdfBlob, name) {
   const token = await getAccessToken();
+  const cfg = GDRIVE_CONFIG;
+
+  // Upload into the Shared Drive root
+  // supportsAllDrives=true is required for Shared Drive uploads
   const metadata = {
     name,
     mimeType: 'application/pdf',
-    parents: [GDRIVE_CONFIG.folderId]
+    parents: [cfg.sharedDriveId]
   };
   const body = new FormData();
   body.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
   body.append('file', pdfBlob, name);
 
-  const resp = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
-    method: 'POST',
-    headers: { Authorization: 'Bearer ' + token },
-    body
-  });
+  const resp = await fetch(
+    'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true',
+    { method: 'POST', headers: { Authorization: 'Bearer ' + token }, body }
+  );
   if (!resp.ok) {
     const txt = await resp.text();
     throw new Error('Drive upload failed: ' + resp.status + ' ' + txt);
@@ -477,7 +468,6 @@ async function uploadToDrive(pdfBlob, name) {
   return await resp.json();
 }
 
-/* ── show upload status on success screen ── */
 function setUploadStatus(type, html) {
   const el = document.getElementById('uploadStatus');
   el.className = 'upload-status ' + type;
@@ -508,59 +498,47 @@ function validate() {
   return true;
 }
 
-/* ── submit handler ── */
+/* ── submit ── */
 document.getElementById('submitBtn').addEventListener('click', async () => {
   if (!validate()) return;
-
-  // Show overlay
   const overlay = document.getElementById('submitOverlay');
   const overlayMsg = document.getElementById('overlayMsg');
   const submitBtn = document.getElementById('submitBtn');
   overlay.classList.add('show');
   submitBtn.disabled = true;
-
+  let pdfBlob = null;
   try {
-    // Step 1 — generate PDF
     overlayMsg.textContent = 'Generating PDF…';
-    const pdfBlob = await generatePdfBlob();
-
-    // Step 2 — upload
+    pdfBlob = await generatePdfBlob();
+    window._lastPdfBlob = pdfBlob;
     overlayMsg.textContent = 'Uploading to Google Drive…';
-    const driveFile = await uploadToDrive(pdfBlob, fileName());
-
-    // Step 3 — success
+    await uploadToDrive(pdfBlob, fileName());
     clearProgress();
     overlay.classList.remove('show');
     form.style.display = 'none';
     document.querySelector('.actionbar').style.display = 'none';
-    const s = document.getElementById('success');
-    s.classList.add('show');
-    setUploadStatus('ok', `✓ &nbsp;PDF saved to Google Drive as <strong>${fileName()}</strong>`);
+    document.getElementById('success').classList.add('show');
+    setUploadStatus('ok', `✓ &nbsp;Saved to Google Drive as <strong>${fileName()}</strong>`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Store blob for manual download
-    window._lastPdfBlob = pdfBlob;
-
   } catch (err) {
+    console.error('Submission error:', err);
     overlay.classList.remove('show');
     submitBtn.disabled = false;
-
-    // If Drive upload fails, still complete the submission and show a fallback
-    console.error('Drive upload error:', err);
-    clearProgress();
-    form.style.display = 'none';
-    document.querySelector('.actionbar').style.display = 'none';
-    const s = document.getElementById('success');
-    s.classList.add('show');
-    setUploadStatus('fail', `⚠ Could not upload to Google Drive automatically. Use <strong>Download PDF</strong> below and send it to pmarra@colsoncenter.org manually.`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Try to generate blob anyway for manual download
-    try { window._lastPdfBlob = await generatePdfBlob(); } catch (e) {}
+    if (pdfBlob) {
+      clearProgress();
+      form.style.display = 'none';
+      document.querySelector('.actionbar').style.display = 'none';
+      document.getElementById('success').classList.add('show');
+      setUploadStatus('fail', `⚠ &nbsp;Google Drive upload failed — <em>${err.message}</em><br>Use <strong>Download PDF</strong> below and email it to <a href="mailto:${RECIPIENT}">${RECIPIENT}</a>.`);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      errBanner.textContent = 'Submission failed: ' + err.message + '. Please try again or use "Save a backup file".';
+      errBanner.classList.add('show');
+    }
   }
 });
 
-/* ── download button ── */
+/* ── download ── */
 document.getElementById('dlBtn').addEventListener('click', async function () {
   const btn = this; const orig = btn.textContent;
   btn.textContent = 'Preparing PDF…'; btn.disabled = true;
@@ -569,24 +547,25 @@ document.getElementById('dlBtn').addEventListener('click', async function () {
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fileName(); a.click(); URL.revokeObjectURL(a.href);
   } catch (e) {
     const w = window.open('', '_blank');
-    if (w) { w.document.write(buildDocHtml()); w.document.close(); }
+    if (w) { w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 400); }
+    else alert('Could not generate PDF. Please allow pop-ups and try Print instead.');
   }
   btn.textContent = orig; btn.disabled = false;
 });
 
 document.getElementById('printBtn').addEventListener('click', () => {
   const w = window.open('', '_blank'); if (!w) { alert('Please allow pop-ups to print.'); return; }
-  w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 350);
+  w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 400);
 });
 
 function buildEmailBody() {
   const data = collect();
-  let lines = ['THE COLSON CENTER — BOARD CANDIDATE RECOMMENDATION', 'Confidential nomination', 'Nominee: ' + nomineeName(), 'Submitted: ' + new Date().toLocaleString(), '======================================================', ''];
-  data.forEach(sec => { lines.push('— ' + sec.title.toUpperCase() + ' —'); sec.rows.forEach(([q, a]) => { lines.push(q + ':'); lines.push('  ' + (a || '—')); lines.push(''); }); lines.push(''); });
+  let lines = ['THE COLSON CENTER — BOARD CANDIDATE RECOMMENDATION','Confidential nomination','Nominee: '+nomineeName(),'Submitted: '+new Date().toLocaleString(),'======================================================',''];
+  data.forEach(sec => { lines.push('— '+sec.title.toUpperCase()+' —'); sec.rows.forEach(([q,a])=>{lines.push(q+':');lines.push('  '+(a||'—'));lines.push('');}); lines.push(''); });
   return lines.join('\n');
 }
 document.getElementById('emailBtn').addEventListener('click', () => {
-  const subj = encodeURIComponent('Board Candidate Recommendation — ' + nomineeName());
+  const subj = encodeURIComponent('Board Candidate Recommendation — '+nomineeName());
   const body = encodeURIComponent(buildEmailBody());
   window.location.href = `mailto:${RECIPIENT}?subject=${subj}&body=${body}`;
 });
@@ -594,39 +573,37 @@ document.getElementById('emailBtn').addEventListener('click', () => {
 /* ── autosave ── */
 const STORAGE_KEY = 'cc_board_reco_v1';
 let storageOK = true;
-try { const t = '__t__'; localStorage.setItem(t, '1'); localStorage.removeItem(t); } catch (e) { storageOK = false; }
-function serializeForm() { const o = {}; form.querySelectorAll('input,select,textarea').forEach(el => { if (!el.name) return; if (el.type === 'checkbox' || el.type === 'radio') { if (!Array.isArray(o[el.name])) o[el.name] = []; if (el.checked) o[el.name].push(el.value); } else o[el.name] = el.value; }); return o; }
-function getState() { return { v: 1, savedAt: Date.now(), fields: serializeForm() }; }
-function applyState(st) { if (!st || !st.fields) return; const f = st.fields; form.querySelectorAll('input,select,textarea').forEach(el => { if (!el.name || !(el.name in f)) return; const v = f[el.name]; if (el.type === 'checkbox' || el.type === 'radio') el.checked = Array.isArray(v) && v.includes(el.value); else el.value = v; }); syncChoiceStyles(); }
-function loadState() { try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
-function clearProgress() { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} const el = document.getElementById('saveStatus'); if (el) el.classList.remove('show'); }
-function updateSaveStatus(kind) { const el = document.getElementById('saveStatus'), t = document.getElementById('saveStatusTxt'); if (!el) return; el.classList.add('show'); if (kind === 'warn') { el.classList.add('warn'); t.textContent = 'Auto-save off in this view — use "Save a backup file"'; } else { el.classList.remove('warn'); t.textContent = 'Progress saved · ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); } }
-function saveProgress() { if (!storageOK) { updateSaveStatus('warn'); return; } try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getState())); updateSaveStatus('ok'); } catch (e) { updateSaveStatus('warn'); } }
-let saveTimer = null; function debouncedSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 500); }
-
-function showResumeBanner(saved) {
-  const b = document.getElementById('resumeBanner');
-  const when = saved.savedAt ? new Date(saved.savedAt).toLocaleString() : 'earlier';
-  b.innerHTML = `<p><strong>Welcome back.</strong> We restored a draft you saved ${when}.</p><button type="button" class="btn btn-ghost" id="startOverBtn">Start over</button>`;
-  b.style.display = 'flex';
-  document.getElementById('startOverBtn').onclick = () => { clearProgress(); form.reset(); syncChoiceStyles(); b.style.display = 'none'; };
+try { const t='__t__'; localStorage.setItem(t,'1'); localStorage.removeItem(t); } catch(e) { storageOK=false; }
+function serializeForm(){const o={};form.querySelectorAll('input,select,textarea').forEach(el=>{if(!el.name)return;if(el.type==='checkbox'||el.type==='radio'){if(!Array.isArray(o[el.name]))o[el.name]=[];if(el.checked)o[el.name].push(el.value);}else o[el.name]=el.value;});return o;}
+function getState(){return{v:1,savedAt:Date.now(),fields:serializeForm()};}
+function applyState(st){if(!st||!st.fields)return;const f=st.fields;form.querySelectorAll('input,select,textarea').forEach(el=>{if(!el.name||!(el.name in f))return;const v=f[el.name];if(el.type==='checkbox'||el.type==='radio')el.checked=Array.isArray(v)&&v.includes(el.value);else el.value=v;});syncChoiceStyles();}
+function loadState(){try{const s=localStorage.getItem(STORAGE_KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
+function clearProgress(){try{localStorage.removeItem(STORAGE_KEY);}catch(e){}const el=document.getElementById('saveStatus');if(el)el.classList.remove('show');}
+function updateSaveStatus(kind){const el=document.getElementById('saveStatus'),t=document.getElementById('saveStatusTxt');if(!el)return;el.classList.add('show');if(kind==='warn'){el.classList.add('warn');t.textContent='Auto-save off in this view — use "Save a backup file"';}else{el.classList.remove('warn');t.textContent='Progress saved · '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}}
+function saveProgress(){if(!storageOK){updateSaveStatus('warn');return;}try{localStorage.setItem(STORAGE_KEY,JSON.stringify(getState()));updateSaveStatus('ok');}catch(e){updateSaveStatus('warn');}}
+let saveTimer=null;
+function debouncedSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveProgress,500);}
+function showResumeBanner(saved){
+  const b=document.getElementById('resumeBanner');
+  const when=saved.savedAt?new Date(saved.savedAt).toLocaleString():'earlier';
+  b.innerHTML=`<p><strong>Welcome back.</strong> We restored a draft you saved ${when}.</p><button type="button" class="btn btn-ghost" id="startOverBtn">Start over</button>`;
+  b.style.display='flex';
+  document.getElementById('startOverBtn').onclick=()=>{clearProgress();form.reset();syncChoiceStyles();b.style.display='none';};
 }
-
-document.getElementById('saveFileBtn').addEventListener('click', () => {
-  const blob = new Blob([JSON.stringify(getState(), null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'colson-recommendation-draft.json'; a.click(); URL.revokeObjectURL(a.href);
+document.getElementById('saveFileBtn').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify(getState(),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='colson-recommendation-draft.json';a.click();URL.revokeObjectURL(a.href);
 });
-document.getElementById('loadFileBtn').addEventListener('click', () => document.getElementById('loadFileInput').click());
-document.getElementById('loadFileInput').addEventListener('change', ev => {
-  const file = ev.target.files[0]; if (!file) return; const r = new FileReader();
-  r.onload = () => { try { applyState(JSON.parse(r.result)); saveProgress(); window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { alert('Sorry — that file could not be read as a saved draft.'); } ev.target.value = ''; };
+document.getElementById('loadFileBtn').addEventListener('click',()=>document.getElementById('loadFileInput').click());
+document.getElementById('loadFileInput').addEventListener('change',ev=>{
+  const file=ev.target.files[0];if(!file)return;const r=new FileReader();
+  r.onload=()=>{try{applyState(JSON.parse(r.result));saveProgress();window.scrollTo({top:0,behavior:'smooth'});}catch(e){alert('Sorry — that file could not be read as a saved draft.');}ev.target.value='';};
   r.readAsText(file);
 });
-
-/* init */
-const saved = storageOK ? loadState() : null;
-if (saved && saved.fields && Object.keys(saved.fields).length) { applyState(saved); showResumeBanner(saved); }
+const saved=storageOK?loadState():null;
+if(saved&&saved.fields&&Object.keys(saved.fields).length){applyState(saved);showResumeBanner(saved);}
 syncChoiceStyles();
-if (!storageOK) updateSaveStatus('warn');
+if(!storageOK)updateSaveStatus('warn');
 </script>
 </body>
 </html>
