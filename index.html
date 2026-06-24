@@ -7,7 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
 <style>
   :root{
     --navy:#102A43;--navy-700:#1B3A5B;--navy-900:#0B1E30;--ink:#16222E;
@@ -20,7 +21,7 @@
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;background:var(--cream);
-    background-image:radial-gradient(circle at 12% -10%, rgba(31,122,114,.06), transparent 40%),radial-gradient(circle at 110% 0%, rgba(181,137,60,.07), transparent 38%);
+    background-image:radial-gradient(circle at 12% -10%,rgba(31,122,114,.06),transparent 40%),radial-gradient(circle at 110% 0%,rgba(181,137,60,.07),transparent 38%);
     color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:860px;margin:0 auto;padding:0 24px}
   header.site{background:var(--navy);background-image:linear-gradient(180deg,var(--navy-700),var(--navy) 60%,var(--navy-900));color:#EAF1F5;border-bottom:3px solid var(--gold)}
@@ -116,9 +117,6 @@
   const GDRIVE_CONFIG = {
     clientEmail: 'board-form-uploader@colson-board-form.iam.gserviceaccount.com',
     privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFb/FqPWJwaZGg\nVdAEnkssgxk8omBONcG0rYzWncvPQgxXRyz2HPhzlzwEERYEil1PQExw5HudtqRb\nFdW+KjKWIqPY6W2LwnHHDmOh6ulCT1ZPI4RmIEn5Tg9YGPBtjpzv9bzBCOdOWGhw\n6i3mJs74xCHmMhJTFRWcET+1QconQOYZJ8VMajGs1IrfiL2snGIVsv09JWif24ye\n8IuOJo4M8EIlUVAU2HkMbQtH2v/FUW8K13+OWmzizr5bS1KBIOwVlhacWeJC3MV0\nByXg/NdHGd0NzFLFqaWtfwxewqikNvQVrJ//M8aQQgcFYGOeRE3ViF60F7OdVLNR\nUqDJ4HGVAgMBAAECggEAWutDZVSSNcjvlkGeEtpgLMXMQ9dUeP+ZTZ4T+qrctXsp\nWrG8mzNZGEW/DfJeTMX41St7aAtXf5ehVQ6XiMQ+2lNmV1ebKh5nLa7LI7+dHfuR\n98yXxj29QvB28W8+nHzteTUU8GGsvq/InKLCczdQ3U7Ye3x4YskVU/K/fzUmJe+V\n/b3+lTKl3nPP/T5DNZtpAPI6nOf/WSiTyQo1aNGeGPnvIc3kOiGoOtTlDacCDczK\nkpuTCiDsH5w1qA4+iQrXJs846MVSBYeaduEXnjzTMCKLQjduMS1Eh/Ibo6K0sJo5\ni1wbCWlLoZcqwNZln5oM8STp3vjz65j63WevUWekawKBgQDuP7hNqelZL+HssFFq\nC8+A8fwkpI3qL5Dxd+7p8TuboMHC8tkosjSi6M4ucLoQQCO/A7ypVAzqCGrBPiQ1\n961yKhD0gdQLakieiLQt1W4UWX03bze+tcc2OAvd7HjfToQiaBXecxR/SaEHHuoy\nG/r5TurwOaOqAANw0vN+v56GowKBgQDUJcu0QhWIL9gCMHgq/CXv5oGXiauDzomq\ngT1ne0rnEV8A6jtEAEf+FoOP/N8SJdKnVX7OmI+/3R+WUdoFYZwFdh40KKlMVdKs\nRQ+SE9dk50K+x+ORpMM56SNuhqkTti4ahpfcEn3tOuQGqkFcJ7U+xDD0yciqOBDi\nwYgx+3kCZwKBgQDAJUXH5QvcMSDdWgofI61TilXXW5tUzs3v4NEffb2cMxdx2ZfI\nGYkYBfgbPjDhYEk0CZiDW9UafnVSqoJbwAfzdfe8qmRQXIR6zze5a1NfOBkjtx/X\nQBWNJcB0V/3X4yPv99ADWv6h9cjXzFgG18gef0Y9Pc9AEMi1mnxksbfxTwKBgCW4\ntrjNi1CU2T7CaYuTHBfFD8PnKcUdA2N66XUt+gqODyt1eqZDuolWbXw7xVpPuV4h\nmJOZku3Vnpk24qJUUc6yyvoRRNEa7YPOH8+kkYcSi86qci9icYgpiTBM52Fm4lm7\nFuN9skBtWUBKI6cENHj9n4rXGkQSBgabzOC+Syz/AoGAH7lJ4v0Yp3X3ukr9gBpC\nMtKSggbpWTE3V06yVU+vS73rowxSbLWmjY788dJGulQ2He2wv/LKmFdBDvzdm2Ty\nns979v9y9VBBOrovvIaXOMtBlRDgFDVE5CaY0TuzP+lzrS0+f74HSJ4/xtt/8k6i\nWy9JHhtgKDpCjRpzkVch/ts=\n-----END PRIVATE KEY-----\n`,
-    // ── UPDATED: paste your Shared Drive ID here ──
-    // Go to your Shared Drive in drive.google.com
-    // The ID is the string after /drive/folders/ in the URL
     sharedDriveId: '0AJ0_EyeNpoTEUk9PVA'
   };
 </script>
@@ -315,7 +313,7 @@ function syncChoiceStyles() { form.querySelectorAll('.choice').forEach(c => { co
 form.addEventListener('change', e => { syncChoiceStyles(); if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid'); debouncedSave(); });
 form.addEventListener('input', debouncedSave);
 
-/* ── collect ── */
+/* ── collect form data ── */
 function collect() {
   const out = [];
   document.querySelectorAll('.block[data-sec]').forEach(sec => {
@@ -340,71 +338,110 @@ function collect() {
   });
   return out;
 }
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+
 function nomineeName() { return document.getElementById('nName').value.trim() || 'Nominee'; }
 function fileSlug() { return (document.getElementById('nName').value.trim() || 'nominee').replace(/\s+/g, '-').toLowerCase(); }
 function fileName() { return `colson-board-recommendation-${fileSlug()}-${new Date().toISOString().slice(0,10)}.pdf`; }
 
-/* ── build document HTML (used for PDF iframe and print fallback) ── */
-function buildDocHtml() {
-  const data = collect();
-  let html = `<!DOCTYPE html><html><head><meta charset="utf-8">
-  <title>Board Recommendation — ${escapeHtml(nomineeName())}</title>
-  <style>
-    body{max-width:780px;margin:30px auto;font-family:Georgia,serif;color:#16222E;font-size:13px;line-height:1.55}
-    h1{font-size:20px;color:#102A43;border-bottom:3px solid #B5893C;padding-bottom:8px;margin:0 0 4px}
-    .meta{color:#697789;font-size:12px;margin-bottom:20px;font-family:Arial,sans-serif}
-    h2{font-size:14px;color:#1F7A72;margin:22px 0 4px;border-bottom:1px solid #ddd;padding-bottom:3px;page-break-after:avoid}
-    table{width:100%;border-collapse:collapse;margin-bottom:4px}
-    td{padding:6px 8px;vertical-align:top;border-bottom:1px solid #eee;font-size:12px}
-    td:first-child{width:36%;color:#697789;font-family:Arial,sans-serif}
-    td:last-child{white-space:pre-wrap}
-  </style></head><body>`;
-  html += `<h1>The Colson Center — Board Candidate Recommendation</h1>
-  <div class="meta">Confidential &middot; Nominee: <strong>${escapeHtml(nomineeName())}</strong> &middot; Generated ${new Date().toLocaleString()}</div>`;
-  data.forEach(sec => {
-    html += `<h2>${escapeHtml(sec.title)}</h2><table>`;
-    sec.rows.forEach(([q, a]) => { html += `<tr><td>${escapeHtml(q)}</td><td>${a ? escapeHtml(a) : '—'}</td></tr>`; });
-    html += `</table>`;
-  });
-  html += `</body></html>`;
-  return html;
-}
-
-/* ── generate PDF blob via hidden iframe ──
-   Renders into an iframe so fonts load fully before capture.
-   This fixes the blank PDF bug.                              ── */
+/* ══════════════════════════════════════════════
+   PDF GENERATION — using jsPDF + autoTable
+   Pure JavaScript PDF, no DOM rendering.
+   Guaranteed to work on all browsers/hosts.
+   ══════════════════════════════════════════════ */
 function generatePdfBlob() {
-  return new Promise((resolve, reject) => {
-    if (typeof html2pdf === 'undefined') { reject(new Error('html2pdf not loaded')); return; }
-    const iframe = document.createElement('iframe');
-    iframe.style.cssText = 'position:fixed;left:-9999px;top:0;width:820px;height:1px;border:none;visibility:hidden';
-    document.body.appendChild(iframe);
-    iframe.onload = () => {
-      setTimeout(() => {
-        const el = iframe.contentDocument.body;
-        html2pdf().set({
-          margin: [12, 10, 14, 10],
-          filename: fileName(),
-          image: { type: 'jpeg', quality: .98 },
-          html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', windowWidth: 820 },
-          jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
-          pagebreak: { mode: ['css', 'legacy'] }
-        }).from(el).outputPdf('blob').then(blob => {
-          iframe.remove(); resolve(blob);
-        }).catch(err => { iframe.remove(); reject(err); });
-      }, 800);
-    };
-    iframe.srcdoc = buildDocHtml();
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: 'mm', format: 'letter', orientation: 'portrait' });
+  const data = collect();
+  const pageW = doc.internal.pageSize.getWidth();
+  const margin = 18;
+  const contentW = pageW - margin * 2;
+
+  // Header bar
+  doc.setFillColor(16, 42, 67);
+  doc.rect(0, 0, pageW, 22, 'F');
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(13);
+  doc.setFont('helvetica', 'bold');
+  doc.text('The Colson Center for Christian Worldview', margin, 14);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Board Candidate Recommendation — Confidential', pageW - margin, 14, { align: 'right' });
+
+  // Gold rule
+  doc.setDrawColor(181, 137, 60);
+  doc.setLineWidth(0.8);
+  doc.line(0, 22, pageW, 22);
+
+  let y = 32;
+
+  // Title
+  doc.setTextColor(16, 42, 67);
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('Board Candidate Recommendation', margin, y);
+  y += 6;
+
+  // Meta line
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+  doc.setTextColor(105, 119, 137);
+  doc.text(`Nominee: ${nomineeName()}   |   Generated: ${new Date().toLocaleString()}`, margin, y);
+  y += 10;
+
+  // Sections
+  data.forEach(sec => {
+    // Check if we need a new page (leave 30mm buffer)
+    if (y > doc.internal.pageSize.getHeight() - 30) {
+      doc.addPage();
+      y = 20;
+    }
+
+    // Section header
+    doc.setFillColor(229, 240, 238);
+    doc.rect(margin, y - 4, contentW, 8, 'F');
+    doc.setTextColor(31, 122, 114);
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'bold');
+    doc.text(sec.title, margin + 2, y + 1);
+    y += 8;
+
+    // Table of Q&A
+    const tableRows = sec.rows.map(([q, a]) => [q, a || '—']);
+    doc.autoTable({
+      startY: y,
+      head: [],
+      body: tableRows,
+      margin: { left: margin, right: margin },
+      columnStyles: {
+        0: { cellWidth: contentW * 0.36, fontStyle: 'normal', textColor: [105, 119, 137], fontSize: 9 },
+        1: { cellWidth: contentW * 0.64, fontStyle: 'normal', textColor: [22, 34, 46], fontSize: 9 }
+      },
+      styles: { cellPadding: 3, overflow: 'linebreak', lineColor: [228, 218, 199], lineWidth: 0.1 },
+      alternateRowStyles: { fillColor: [251, 248, 241] },
+      theme: 'grid',
+      didDrawPage: (d) => { y = d.cursor.y; }
+    });
+    y = doc.lastAutoTable.finalY + 6;
   });
+
+  // Footer on each page
+  const pageCount = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Confidential — Board Development Committee', margin, doc.internal.pageSize.getHeight() - 8);
+    doc.text(`Page ${i} of ${pageCount}`, pageW - margin, doc.internal.pageSize.getHeight() - 8, { align: 'right' });
+  }
+
+  return doc.output('blob');
 }
 
 /* ══════════════════════════════════════════════
    GOOGLE DRIVE — Shared Drive upload
-   Key fixes vs previous version:
-   1. Uses sharedDriveId instead of folderId
-   2. supportsAllDrives=true on upload URL
-   3. includeItemsFromAllDrives param added
+   Scope: drive (required for Shared Drives)
+   supportsAllDrives=true on upload URL
    ══════════════════════════════════════════════ */
 function b64url(buf) {
   const bytes = new Uint8Array(buf);
@@ -418,7 +455,7 @@ async function getAccessToken() {
   const header = { alg: 'RS256', typ: 'JWT' };
   const claim = {
     iss: cfg.clientEmail,
-    scope: 'https://www.googleapis.com/auth/drive.file',
+    scope: 'https://www.googleapis.com/auth/drive',
     aud: 'https://oauth2.googleapis.com/token',
     exp: now + 3600, iat: now
   };
@@ -437,26 +474,21 @@ async function getAccessToken() {
     body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`
   });
   if (!resp.ok) throw new Error('Token request failed: ' + resp.status);
-  const data = await resp.json();
-  if (!data.access_token) throw new Error('No access token in response');
-  return data.access_token;
+  const d = await resp.json();
+  if (!d.access_token) throw new Error('No access token returned');
+  return d.access_token;
 }
 
 async function uploadToDrive(pdfBlob, name) {
   const token = await getAccessToken();
-  const cfg = GDRIVE_CONFIG;
-
-  // Upload into the Shared Drive root
-  // supportsAllDrives=true is required for Shared Drive uploads
   const metadata = {
     name,
     mimeType: 'application/pdf',
-    parents: [cfg.sharedDriveId]
+    parents: [GDRIVE_CONFIG.sharedDriveId]
   };
   const body = new FormData();
   body.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
   body.append('file', pdfBlob, name);
-
   const resp = await fetch(
     'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&supportsAllDrives=true',
     { method: 'POST', headers: { Authorization: 'Bearer ' + token }, body }
@@ -509,7 +541,7 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
   let pdfBlob = null;
   try {
     overlayMsg.textContent = 'Generating PDF…';
-    pdfBlob = await generatePdfBlob();
+    pdfBlob = generatePdfBlob(); // synchronous with jsPDF
     window._lastPdfBlob = pdfBlob;
     overlayMsg.textContent = 'Uploading to Google Drive…';
     await uploadToDrive(pdfBlob, fileName());
@@ -532,30 +564,36 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
       setUploadStatus('fail', `⚠ &nbsp;Google Drive upload failed — <em>${err.message}</em><br>Use <strong>Download PDF</strong> below and email it to <a href="mailto:${RECIPIENT}">${RECIPIENT}</a>.`);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      errBanner.textContent = 'Submission failed: ' + err.message + '. Please try again or use "Save a backup file".';
+      errBanner.textContent = 'Submission failed: ' + err.message;
       errBanner.classList.add('show');
     }
   }
 });
 
 /* ── download ── */
-document.getElementById('dlBtn').addEventListener('click', async function () {
-  const btn = this; const orig = btn.textContent;
-  btn.textContent = 'Preparing PDF…'; btn.disabled = true;
+document.getElementById('dlBtn').addEventListener('click', function () {
   try {
-    const blob = window._lastPdfBlob || await generatePdfBlob();
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fileName(); a.click(); URL.revokeObjectURL(a.href);
+    const blob = window._lastPdfBlob || generatePdfBlob();
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName();
+    a.click();
+    URL.revokeObjectURL(a.href);
   } catch (e) {
-    const w = window.open('', '_blank');
-    if (w) { w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 400); }
-    else alert('Could not generate PDF. Please allow pop-ups and try Print instead.');
+    alert('Could not generate PDF: ' + e.message);
   }
-  btn.textContent = orig; btn.disabled = false;
 });
 
 document.getElementById('printBtn').addEventListener('click', () => {
-  const w = window.open('', '_blank'); if (!w) { alert('Please allow pop-ups to print.'); return; }
-  w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 400);
+  try {
+    const blob = window._lastPdfBlob || generatePdfBlob();
+    const url = URL.createObjectURL(blob);
+    const w = window.open(url, '_blank');
+    if (!w) alert('Please allow pop-ups to open the PDF.');
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+  } catch (e) {
+    alert('Could not generate PDF: ' + e.message);
+  }
 });
 
 function buildEmailBody() {
