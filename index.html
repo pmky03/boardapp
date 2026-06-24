@@ -23,8 +23,6 @@
     background-image:radial-gradient(circle at 12% -10%, rgba(31,122,114,.06), transparent 40%),radial-gradient(circle at 110% 0%, rgba(181,137,60,.07), transparent 38%);
     color:var(--ink);font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:860px;margin:0 auto;padding:0 24px}
-
-  /* header */
   header.site{background:var(--navy);background-image:linear-gradient(180deg,var(--navy-700),var(--navy) 60%,var(--navy-900));color:#EAF1F5;border-bottom:3px solid var(--gold)}
   .head-inner{display:flex;align-items:center;gap:18px;padding:22px 24px;max-width:860px;margin:0 auto}
   .mark{display:flex;align-items:center;gap:14px}
@@ -36,21 +34,17 @@
   .wordmark .org{font-family:'Fraunces',serif;font-weight:600;font-size:1.22rem;letter-spacing:.02em;color:#fff}
   .wordmark .sub{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);font-weight:600}
   .head-right{margin-left:auto;text-align:right;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#9FB6C6}
-
   main{padding:34px 0 140px}
   .intro{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:34px 40px;margin-bottom:24px}
   @media(max-width:560px){.intro{padding:26px 22px}}
   .intro .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--teal);font-weight:700;margin-bottom:10px}
   .intro h1{font-family:'Fraunces',serif;font-weight:600;font-size:2rem;line-height:1.12;color:var(--navy);margin:0 0 12px}
   .intro p{color:var(--muted);max-width:64ch;margin:0;font-size:.96rem}
-
   .block{background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:30px 40px;margin-bottom:22px}
   @media(max-width:560px){.block{padding:24px 22px}}
   .block .num{font-family:'Fraunces',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
   .block h2{font-family:'Fraunces',serif;font-weight:600;font-size:1.4rem;line-height:1.15;color:var(--navy);margin:0 0 4px}
   .block .sublead{color:var(--muted);font-size:.92rem;margin:0 0 20px}
-  .block h2+.fields,.block h2+.field{margin-top:18px}
-
   .grid{display:grid;gap:18px}
   .g2{grid-template-columns:1fr 1fr}
   @media(max-width:600px){.g2{grid-template-columns:1fr}}
@@ -65,7 +59,6 @@
   input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(31,122,114,.14)}
   input.invalid,select.invalid,textarea.invalid{border-color:var(--danger);box-shadow:0 0 0 3px rgba(178,58,58,.12)}
   select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23697789' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-
   .choices{display:flex;flex-direction:column;gap:9px}
   .choice{display:flex;align-items:flex-start;gap:11px;padding:11px 14px;border:1px solid var(--line-strong);border-radius:10px;cursor:pointer;background:var(--paper-warm);transition:.15s;font-size:.92rem;line-height:1.4}
   .choice:hover{border-color:var(--teal);background:#fff}
@@ -73,10 +66,7 @@
   .choice.checked{border-color:var(--teal);background:var(--teal-light)}
   .grid-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
   @media(max-width:560px){.grid-choices{grid-template-columns:1fr}}
-
   .callout{background:var(--teal-light);border:1px solid #BFDCD7;border-radius:12px;padding:14px 18px;font-size:.88rem;color:#1d4a46;margin-top:18px}
-
-  /* sticky action bar */
   .actionbar{position:sticky;bottom:0;z-index:30;background:rgba(251,248,241,.95);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;box-shadow:0 -10px 40px -26px rgba(16,42,67,.5);padding:14px 22px;display:flex;align-items:center;gap:16px;margin-top:6px}
   .save-status{display:flex;align-items:center;gap:7px;font-size:.78rem;color:var(--muted);font-weight:600;opacity:0;transition:opacity .3s}
   .save-status.show{opacity:1}
@@ -84,17 +74,15 @@
   .save-status.warn{color:var(--gold)}.save-status.warn .dot{background:var(--gold)}
   .actionbar .spacer{margin-left:auto}
   @media(max-width:560px){.actionbar{flex-wrap:wrap}.save-status{order:2;width:100%}}
-
   .btn{font-family:inherit;font-weight:600;font-size:.92rem;border-radius:10px;padding:12px 26px;cursor:pointer;border:1px solid transparent;transition:.16s}
   .btn-primary{background:var(--teal);color:#fff;box-shadow:0 8px 22px -10px rgba(31,122,114,.7)}
   .btn-primary:hover{background:var(--teal-600);transform:translateY(-1px)}
+  .btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
   .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line-strong)}
   .btn-ghost:hover{background:#fff;border-color:var(--navy)}
   .btn-gold{background:var(--navy);color:#fff}.btn-gold:hover{background:var(--navy-900)}
-
   .err-banner{display:none;background:#FBEAEA;border:1px solid #E6C2C2;color:var(--danger);border-radius:9px;padding:10px 14px;font-size:.86rem;font-weight:500;margin-bottom:22px}
   .err-banner.show{display:block}
-
   .resume{display:flex;flex-wrap:wrap;align-items:center;gap:12px;background:var(--teal-light);border:1px solid #BFDCD7;border-radius:12px;padding:14px 18px;margin-bottom:22px}
   .resume p{margin:0;font-size:.9rem;color:#1d4a46;flex:1;min-width:220px}
   .resume p strong{color:var(--teal)}
@@ -102,7 +90,6 @@
   .backup-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:18px;padding-top:16px;border-top:1px dashed var(--line-strong)}
   .backup-row .lbl{font-size:.84rem;color:var(--muted);font-weight:600}
   .backup-row .btn{padding:8px 15px;font-size:.83rem}
-
   .success{display:none;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:42px 40px;text-align:center}
   .success.show{display:block}
   .success .seal{width:74px;height:74px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-size:2rem;margin:0 auto 16px;box-shadow:0 12px 30px -12px rgba(31,122,114,.7)}
@@ -111,9 +98,49 @@
   .dl-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
   .footnote{text-align:center;color:var(--muted);font-size:.78rem;margin-top:20px;line-height:1.6}
   .footnote a{color:var(--teal)}
+  /* upload status */
+  .upload-status{margin-top:18px;padding:14px 18px;border-radius:12px;font-size:.88rem;font-weight:500;display:none}
+  .upload-status.uploading{display:block;background:#EFF6FF;border:1px solid #BFDBFE;color:#1e40af}
+  .upload-status.ok{display:block;background:var(--teal-light);border:1px solid #BFDCD7;color:#1d4a46}
+  .upload-status.fail{display:block;background:#FBEAEA;border:1px solid #E6C2C2;color:var(--danger)}
+  .spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;margin-right:7px;vertical-align:middle}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  /* submitting overlay */
+  .submit-overlay{display:none;position:fixed;inset:0;background:rgba(16,42,67,.45);z-index:100;align-items:center;justify-content:center}
+  .submit-overlay.show{display:flex}
+  .submit-card{background:#fff;border-radius:16px;padding:36px 40px;text-align:center;max-width:340px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4)}
+  .submit-card .big-spin{width:44px;height:44px;border:4px solid var(--teal-light);border-top-color:var(--teal);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
+  .submit-card p{margin:0;color:var(--muted);font-size:.92rem}
+  .submit-card strong{display:block;font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);margin-bottom:6px}
 </style>
 </head>
 <body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GOOGLE DRIVE CONFIGURATION
+     ───────────────────────────────────────────────────────────
+     Follow the setup guide (SETUP.md) to get these values.
+     Replace the placeholders below with your real credentials.
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+  const GDRIVE_CONFIG = {
+    // From your service account JSON key file:
+    clientEmail: 'board-form-uploader@colson-board-form.iam.gserviceaccount.com',
+    // The private key from the JSON key file (include the full -----BEGIN/END----- lines):
+    privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFb/FqPWJwaZGg\nVdAEnkssgxk8omBONcG0rYzWncvPQgxXRyz2HPhzlzwEERYEil1PQExw5HudtqRb\nFdW+KjKWIqPY6W2LwnHHDmOh6ulCT1ZPI4RmIEn5Tg9YGPBtjpzv9bzBCOdOWGhw\n6i3mJs74xCHmMhJTFRWcET+1QconQOYZJ8VMajGs1IrfiL2snGIVsv09JWif24ye\n8IuOJo4M8EIlUVAU2HkMbQtH2v/FUW8K13+OWmzizr5bS1KBIOwVlhacWeJC3MV0\nByXg/NdHGd0NzFLFqaWtfwxewqikNvQVrJ//M8aQQgcFYGOeRE3ViF60F7OdVLNR\nUqDJ4HGVAgMBAAECggEAWutDZVSSNcjvlkGeEtpgLMXMQ9dUeP+ZTZ4T+qrctXsp\nWrG8mzNZGEW/DfJeTMX41St7aAtXf5ehVQ6XiMQ+2lNmV1ebKh5nLa7LI7+dHfuR\n98yXxj29QvB28W8+nHzteTUU8GGsvq/InKLCczdQ3U7Ye3x4YskVU/K/fzUmJe+V\n/b3+lTKl3nPP/T5DNZtpAPI6nOf/WSiTyQo1aNGeGPnvIc3kOiGoOtTlDacCDczK\nkpuTCiDsH5w1qA4+iQrXJs846MVSBYeaduEXnjzTMCKLQjduMS1Eh/Ibo6K0sJo5\ni1wbCWlLoZcqwNZln5oM8STp3vjz65j63WevUWekawKBgQDuP7hNqelZL+HssFFq\nC8+A8fwkpI3qL5Dxd+7p8TuboMHC8tkosjSi6M4ucLoQQCO/A7ypVAzqCGrBPiQ1\n961yKhD0gdQLakieiLQt1W4UWX03bze+tcc2OAvd7HjfToQiaBXecxR/SaEHHuoy\nG/r5TurwOaOqAANw0vN+v56GowKBgQDUJcu0QhWIL9gCMHgq/CXv5oGXiauDzomq\ngT1ne0rnEV8A6jtEAEf+FoOP/N8SJdKnVX7OmI+/3R+WUdoFYZwFdh40KKlMVdKs\nRQ+SE9dk50K+x+ORpMM56SNuhqkTti4ahpfcEn3tOuQGqkFcJ7U+xDD0yciqOBDi\nwYgx+3kCZwKBgQDAJUXH5QvcMSDdWgofI61TilXXW5tUzs3v4NEffb2cMxdx2ZfI\nGYkYBfgbPjDhYEk0CZiDW9UafnVSqoJbwAfzdfe8qmRQXIR6zze5a1NfOBkjtx/X\nQBWNJcB0V/3X4yPv99ADWv6h9cjXzFgG18gef0Y9Pc9AEMi1mnxksbfxTwKBgCW4\ntrjNi1CU2T7CaYuTHBfFD8PnKcUdA2N66XUt+gqODyt1eqZDuolWbXw7xVpPuV4h\nmJOZku3Vnpk24qJUUc6yyvoRRNEa7YPOH8+kkYcSi86qci9icYgpiTBM52Fm4lm7\nFuN9skBtWUBKI6cENHj9n4rXGkQSBgabzOC+Syz/AoGAH7lJ4v0Yp3X3ukr9gBpC\nMtKSggbpWTE3V06yVU+vS73rowxSbLWmjY788dJGulQ2He2wv/LKmFdBDvzdm2Ty\nns979v9y9VBBOrovvIaXOMtBlRDgFDVE5CaY0TuzP+lzrS0+f74HSJ4/xtt/8k6i\nWy9JHhtgKDpCjRpzkVch/ts=\n-----END PRIVATE KEY-----\n`,
+    // The Google Drive folder ID (last part of the folder's URL):
+    folderId: '1-UUakiGgaHi1GLPhsLwQ9Kbm2fVQsQrR'
+  };
+</script>
+
+<!-- Submitting overlay -->
+<div class="submit-overlay" id="submitOverlay">
+  <div class="submit-card">
+    <div class="big-spin"></div>
+    <strong>Submitting recommendation…</strong>
+    <p id="overlayMsg">Generating PDF and uploading to Google Drive</p>
+  </div>
+</div>
 
 <header class="site">
   <div class="head-inner">
@@ -138,7 +165,6 @@
 
     <form id="reco" novalidate>
 
-      <!-- NOMINEE -->
       <section class="block" data-sec="Nominee">
         <div class="num">The Nominee</div>
         <h2>Who are you recommending?</h2>
@@ -153,7 +179,6 @@
         </div>
       </section>
 
-      <!-- NOMINATOR -->
       <section class="block" data-sec="Nominator">
         <div class="num">The Nominator</div>
         <h2>About you</h2>
@@ -168,7 +193,6 @@
         </div>
       </section>
 
-      <!-- 1 WHY -->
       <section class="block" data-sec="Why This Person">
         <div class="num">Section 1</div>
         <h2>Why this person?</h2>
@@ -177,7 +201,6 @@
           <textarea id="why" name="Why this person" style="min-height:130px" required></textarea></div>
       </section>
 
-      <!-- 2 ALIGNMENT / CHARACTER / FIT -->
       <section class="block" data-sec="Mission Alignment, Character & Board Fit">
         <div class="num">Section 2</div>
         <h2>Mission alignment, character &amp; board fit</h2>
@@ -190,7 +213,6 @@
           <textarea id="a3" name="Humility, collaboration & board fit" required></textarea></div>
       </section>
 
-      <!-- 3 EXPERIENCE / STRENGTHS -->
       <section class="block" data-sec="Experience & Contribution to the Board">
         <div class="num">Section 3</div>
         <h2>Experience &amp; contribution to the board</h2>
@@ -203,7 +225,6 @@
           <textarea id="comments" name="Comments on strengths" required></textarea></div>
       </section>
 
-      <!-- 4 READINESS -->
       <section class="block" data-sec="Readiness & Capacity">
         <div class="num">Section 4</div>
         <h2>Readiness &amp; capacity</h2>
@@ -216,7 +237,6 @@
           <textarea id="r3" name="Overall readiness" required></textarea></div>
       </section>
 
-      <!-- 5 CONNECTION -->
       <section class="block" data-sec="Connection to The Colson Center">
         <div class="num">Section 5 · Optional</div>
         <h2>Connection to the Colson Center</h2>
@@ -227,7 +247,6 @@
           <select id="c2" name="Colson Fellow (Centurion)"><option value=""></option><option>Yes — Colson Fellow</option><option>Yes — Centurion</option><option>No</option><option>Unsure</option></select></div>
       </section>
 
-      <!-- 6 CONCERNS -->
       <section class="block" data-sec="Concerns or Watchouts">
         <div class="num">Section 6</div>
         <h2>Any concerns or watchouts</h2>
@@ -237,7 +256,6 @@
           <textarea id="concerns" name="Concerns or watchouts" required></textarea></div>
       </section>
 
-      <!-- 7 RECOMMENDATION -->
       <section class="block" data-sec="Overall Recommendation">
         <div class="num">Section 7</div>
         <h2>Overall recommendation</h2>
@@ -270,7 +288,6 @@
         </div>
       </section>
 
-      <!-- ACTION BAR -->
       <div class="actionbar">
         <span class="save-status" id="saveStatus"><span class="dot"></span><span id="saveStatusTxt">Saved</span></span>
         <span class="spacer"></span>
@@ -282,7 +299,8 @@
     <div class="success" id="success">
       <div class="seal">✓</div>
       <h2>Recommendation Complete</h2>
-      <p>Thank you for investing in the future of the Colson Center Board. Download a PDF for your records and send your recommendation to the Board Development Committee using the button below.</p>
+      <p id="successMsg">Your recommendation has been saved to the Board Development Committee's Google Drive folder.</p>
+      <div class="upload-status" id="uploadStatus"></div>
       <div class="dl-row">
         <button type="button" class="btn btn-primary" id="dlBtn">Download PDF</button>
         <button type="button" class="btn btn-gold" id="emailBtn">Email recommendation</button>
@@ -294,165 +312,321 @@
 </div>
 
 <script>
-const form=document.getElementById('reco');
-const errBanner=document.getElementById('errBanner');
-const RECIPIENT='pmarra@colsoncenter.org';
+const form = document.getElementById('reco');
+const errBanner = document.getElementById('errBanner');
+const RECIPIENT = 'pmarra@colsoncenter.org';
 
-/* strengths checkboxes */
-const STRENGTHS=["Theology / Worldview","Finance / Audit","Governance / Board Experience","Development / Fundraising","Organizational Leadership","Legal / HR","Communications / Digital","Church Leadership","Investment / Financial Markets","Public / Cultural Engagement","Other"];
-const sg=document.getElementById('strengthGrid');
-STRENGTHS.forEach(s=>{
-  const l=document.createElement('label');l.className='choice';
-  l.innerHTML=`<input type="checkbox" name="Strengths" value="${s}"><span>${s}</span>`;
+/* ── strengths checkboxes ── */
+const STRENGTHS = ["Theology / Worldview","Finance / Audit","Governance / Board Experience","Development / Fundraising","Organizational Leadership","Legal / HR","Communications / Digital","Church Leadership","Investment / Financial Markets","Public / Cultural Engagement","Other"];
+const sg = document.getElementById('strengthGrid');
+STRENGTHS.forEach(s => {
+  const l = document.createElement('label'); l.className = 'choice';
+  l.innerHTML = `<input type="checkbox" name="Strengths" value="${s}"><span>${s}</span>`;
   sg.appendChild(l);
 });
 
-function syncChoiceStyles(){ form.querySelectorAll('.choice').forEach(c=>{const i=c.querySelector('input');if(i)c.classList.toggle('checked',i.checked);}); }
-form.addEventListener('change',e=>{ syncChoiceStyles(); if(e.target.classList.contains('invalid'))e.target.classList.remove('invalid'); debouncedSave(); });
-form.addEventListener('input',debouncedSave);
+function syncChoiceStyles() { form.querySelectorAll('.choice').forEach(c => { const i = c.querySelector('input'); if (i) c.classList.toggle('checked', i.checked); }); }
+form.addEventListener('change', e => { syncChoiceStyles(); if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid'); debouncedSave(); });
+form.addEventListener('input', debouncedSave);
 
-/* ---------- collect for output ---------- */
-function collect(){
-  const out=[];
-  document.querySelectorAll('.block[data-sec]').forEach(sec=>{
-    const rows=[];
-    sec.querySelectorAll('.field[data-label]').forEach(f=>{
-      const label=f.dataset.label;
-      const checks=[...f.querySelectorAll('input[type=checkbox]')];
-      const radios=[...f.querySelectorAll('input[type=radio]')];
-      let val='';
-      if(checks.length && f.querySelector('input[name="Strengths"]')){
-        val=checks.filter(c=>c.checked).map(c=>c.value).join(', ');
-      } else if(checks.length){ // attestation single checkbox
-        const c=checks[0]; val=c.checked?(c.value||'Confirmed'):'';
-      } else if(radios.length){
-        const r=radios.find(x=>x.checked); val=r?r.value:'';
+/* ── collect ── */
+function collect() {
+  const out = [];
+  document.querySelectorAll('.block[data-sec]').forEach(sec => {
+    const rows = [];
+    sec.querySelectorAll('.field[data-label]').forEach(f => {
+      const label = f.dataset.label;
+      const checks = [...f.querySelectorAll('input[type=checkbox]')];
+      const radios = [...f.querySelectorAll('input[type=radio]')];
+      let val = '';
+      if (checks.length && f.querySelector('input[name="Strengths"]')) {
+        val = checks.filter(c => c.checked).map(c => c.value).join(', ');
+      } else if (checks.length) {
+        const c = checks[0]; val = c.checked ? (c.value || 'Confirmed') : '';
+      } else if (radios.length) {
+        const r = radios.find(x => x.checked); val = r ? r.value : '';
       } else {
-        const el=f.querySelector('input,select,textarea'); val=el?el.value.trim():'';
+        const el = f.querySelector('input,select,textarea'); val = el ? el.value.trim() : '';
       }
-      rows.push([label,val]);
+      rows.push([label, val]);
     });
-    if(rows.length) out.push({title:sec.dataset.sec,rows});
+    if (rows.length) out.push({ title: sec.dataset.sec, rows });
   });
   return out;
 }
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function nomineeName(){ return document.getElementById('nName').value.trim()||'Nominee'; }
-function fileSlug(){ return (document.getElementById('nName').value.trim()||'nominee').replace(/\s+/g,'-').toLowerCase(); }
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
+function nomineeName() { return document.getElementById('nName').value.trim() || 'Nominee'; }
+function fileSlug() { return (document.getElementById('nName').value.trim() || 'nominee').replace(/\s+/g, '-').toLowerCase(); }
+function fileName() { return `colson-board-recommendation-${fileSlug()}-${new Date().toISOString().slice(0,10)}.pdf`; }
 
-/* ---------- validation ---------- */
-function validate(){
-  errBanner.classList.remove('show');
-  let firstBad=null;
-  form.querySelectorAll('.invalid').forEach(el=>el.classList.remove('invalid'));
-  form.querySelectorAll('[required]').forEach(inp=>{
-    if(inp.type==='checkbox'||inp.type==='radio'){
-      const group=[...form.querySelectorAll(`[name="${CSS.escape(inp.name)}"]`)];
-      if(!group.some(g=>g.checked)){ if(!firstBad)firstBad=inp; }
-    } else if(!inp.value.trim()){ inp.classList.add('invalid'); if(!firstBad)firstBad=inp; }
-    if(inp.type==='email'&&inp.value.trim()&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inp.value)){ inp.classList.add('invalid'); if(!firstBad)firstBad=inp; }
+/* ── build PDF element ── */
+function buildDocElement() {
+  const data = collect();
+  const el = document.createElement('div');
+  el.style.cssText = 'width:760px;padding:40px;background:#fff;font-family:Georgia,serif;color:#16222E;line-height:1.5';
+  let html = `<h1 style="font-size:22px;color:#102A43;border-bottom:3px solid #B5893C;padding-bottom:8px;margin:0 0 4px">The Colson Center — Board Candidate Recommendation</h1>
+    <div style="color:#697789;font-size:13px;margin-bottom:22px;font-family:Arial,sans-serif">Confidential &middot; Nominee: <strong>${escapeHtml(nomineeName())}</strong> &middot; Generated ${new Date().toLocaleString()}</div>`;
+  data.forEach(sec => {
+    html += `<h2 style="font-size:15px;color:#1F7A72;margin:24px 0 4px;border-bottom:1px solid #ddd;padding-bottom:4px;page-break-after:avoid">${sec.title}</h2><table style="width:100%;border-collapse:collapse">`;
+    sec.rows.forEach(([q, a]) => { html += `<tr><td style="width:36%;padding:7px 8px;vertical-align:top;font-size:12.5px;color:#697789;font-family:Arial,sans-serif;border-bottom:1px solid #eee">${escapeHtml(q)}</td><td style="padding:7px 8px;vertical-align:top;font-size:12.5px;border-bottom:1px solid #eee;white-space:pre-wrap">${a ? escapeHtml(a) : '—'}</td></tr>`; });
+    html += '</table>';
   });
-  // at least one strength
-  const anyStrength=[...form.querySelectorAll('input[name="Strengths"]')].some(c=>c.checked);
-  if(!anyStrength && !document.getElementById('otherStrength').value.trim()){ if(!firstBad)firstBad=document.getElementById('strengthGrid'); }
-  if(firstBad){
-    errBanner.textContent='Please complete the highlighted required fields before submitting.';
+  el.innerHTML = html; return el;
+}
+function buildDocHtml() {
+  const tmp = buildDocElement();
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Board Recommendation — ${escapeHtml(nomineeName())}</title></head><body style="max-width:800px;margin:30px auto">${tmp.innerHTML}</body></html>`;
+}
+
+/* ── generate PDF blob ── */
+function generatePdfBlob() {
+  return new Promise((resolve, reject) => {
+    if (typeof html2pdf === 'undefined') { reject(new Error('html2pdf not loaded')); return; }
+    const el = buildDocElement();
+    el.style.position = 'fixed'; el.style.left = '-10000px'; el.style.top = '0';
+    document.body.appendChild(el);
+    html2pdf().set({
+      margin: [12, 10, 14, 10],
+      filename: fileName(),
+      image: { type: 'jpeg', quality: .98 },
+      html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff' },
+      jsPDF: { unit: 'mm', format: 'letter', orientation: 'portrait' },
+      pagebreak: { mode: ['css', 'legacy'] }
+    }).from(el).outputPdf('blob').then(blob => {
+      el.remove(); resolve(blob);
+    }).catch(err => { el.remove(); reject(err); });
+  });
+}
+
+/* ══════════════════════════════════════════════════════════
+   GOOGLE DRIVE UPLOAD
+   Uses the service account credentials in GDRIVE_CONFIG
+   to get an OAuth2 access token via JWT, then uploads
+   the PDF blob to the specified folder.
+   ══════════════════════════════════════════════════════════ */
+
+// Base64url encode (needed for JWT)
+function b64url(buf) {
+  const bytes = new Uint8Array(buf);
+  let str = '';
+  bytes.forEach(b => str += String.fromCharCode(b));
+  return btoa(str).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+async function getAccessToken() {
+  const cfg = GDRIVE_CONFIG;
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: 'RS256', typ: 'JWT' };
+  const claim = {
+    iss: cfg.clientEmail,
+    scope: 'https://www.googleapis.com/auth/drive.file',
+    aud: 'https://oauth2.googleapis.com/token',
+    exp: now + 3600,
+    iat: now
+  };
+  const enc = s => b64url(new TextEncoder().encode(JSON.stringify(s)));
+  const signingInput = enc(header) + '.' + enc(claim);
+
+  // Import the private key
+  const pemBody = cfg.privateKey
+    .replace(/-----BEGIN PRIVATE KEY-----/, '')
+    .replace(/-----END PRIVATE KEY-----/, '')
+    .replace(/\s+/g, '');
+  const der = Uint8Array.from(atob(pemBody), c => c.charCodeAt(0));
+  const key = await crypto.subtle.importKey(
+    'pkcs8', der.buffer,
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false, ['sign']
+  );
+  const sig = await crypto.subtle.sign(
+    'RSASSA-PKCS1-v1_5', key,
+    new TextEncoder().encode(signingInput)
+  );
+  const jwt = signingInput + '.' + b64url(sig);
+
+  const resp = await fetch('https://oauth2.googleapis.com/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer&assertion=${jwt}`
+  });
+  if (!resp.ok) throw new Error('Token request failed: ' + resp.status);
+  const data = await resp.json();
+  return data.access_token;
+}
+
+async function uploadToDrive(pdfBlob, name) {
+  const token = await getAccessToken();
+  const metadata = {
+    name,
+    mimeType: 'application/pdf',
+    parents: [GDRIVE_CONFIG.folderId]
+  };
+  const body = new FormData();
+  body.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+  body.append('file', pdfBlob, name);
+
+  const resp = await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart', {
+    method: 'POST',
+    headers: { Authorization: 'Bearer ' + token },
+    body
+  });
+  if (!resp.ok) {
+    const txt = await resp.text();
+    throw new Error('Drive upload failed: ' + resp.status + ' ' + txt);
+  }
+  return await resp.json();
+}
+
+/* ── show upload status on success screen ── */
+function setUploadStatus(type, html) {
+  const el = document.getElementById('uploadStatus');
+  el.className = 'upload-status ' + type;
+  el.innerHTML = html;
+}
+
+/* ── validation ── */
+function validate() {
+  errBanner.classList.remove('show');
+  let firstBad = null;
+  form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+  form.querySelectorAll('[required]').forEach(inp => {
+    if (inp.type === 'checkbox' || inp.type === 'radio') {
+      const group = [...form.querySelectorAll(`[name="${CSS.escape(inp.name)}"]`)];
+      if (!group.some(g => g.checked)) { if (!firstBad) firstBad = inp; }
+    } else if (!inp.value.trim()) { inp.classList.add('invalid'); if (!firstBad) firstBad = inp; }
+    if (inp.type === 'email' && inp.value.trim() && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(inp.value)) { inp.classList.add('invalid'); if (!firstBad) firstBad = inp; }
+  });
+  const anyStrength = [...form.querySelectorAll('input[name="Strengths"]')].some(c => c.checked);
+  if (!anyStrength && !document.getElementById('otherStrength').value.trim()) { if (!firstBad) firstBad = document.getElementById('strengthGrid'); }
+  if (firstBad) {
+    errBanner.textContent = 'Please complete the highlighted required fields before submitting.';
     errBanner.classList.add('show');
-    (firstBad.closest('.block')||firstBad).scrollIntoView({behavior:'smooth',block:'center'});
-    if(firstBad.focus) try{firstBad.focus({preventScroll:true});}catch(e){}
+    (firstBad.closest('.block') || firstBad).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (firstBad.focus) try { firstBad.focus({ preventScroll: true }); } catch (e) {}
     return false;
   }
   return true;
 }
 
-document.getElementById('submitBtn').addEventListener('click',()=>{
-  if(!validate()) return;
-  clearProgress();
-  form.style.display='none';
-  document.querySelector('.actionbar').style.display='none';
-  const s=document.getElementById('success'); s.classList.add('show');
-  window.scrollTo({top:0,behavior:'smooth'});
+/* ── submit handler ── */
+document.getElementById('submitBtn').addEventListener('click', async () => {
+  if (!validate()) return;
+
+  // Show overlay
+  const overlay = document.getElementById('submitOverlay');
+  const overlayMsg = document.getElementById('overlayMsg');
+  const submitBtn = document.getElementById('submitBtn');
+  overlay.classList.add('show');
+  submitBtn.disabled = true;
+
+  try {
+    // Step 1 — generate PDF
+    overlayMsg.textContent = 'Generating PDF…';
+    const pdfBlob = await generatePdfBlob();
+
+    // Step 2 — upload
+    overlayMsg.textContent = 'Uploading to Google Drive…';
+    const driveFile = await uploadToDrive(pdfBlob, fileName());
+
+    // Step 3 — success
+    clearProgress();
+    overlay.classList.remove('show');
+    form.style.display = 'none';
+    document.querySelector('.actionbar').style.display = 'none';
+    const s = document.getElementById('success');
+    s.classList.add('show');
+    setUploadStatus('ok', `✓ &nbsp;PDF saved to Google Drive as <strong>${fileName()}</strong>`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Store blob for manual download
+    window._lastPdfBlob = pdfBlob;
+
+  } catch (err) {
+    overlay.classList.remove('show');
+    submitBtn.disabled = false;
+
+    // If Drive upload fails, still complete the submission and show a fallback
+    console.error('Drive upload error:', err);
+    clearProgress();
+    form.style.display = 'none';
+    document.querySelector('.actionbar').style.display = 'none';
+    const s = document.getElementById('success');
+    s.classList.add('show');
+    setUploadStatus('fail', `⚠ Could not upload to Google Drive automatically. Use <strong>Download PDF</strong> below and send it to pmarra@colsoncenter.org manually.`);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Try to generate blob anyway for manual download
+    try { window._lastPdfBlob = await generatePdfBlob(); } catch (e) {}
+  }
 });
 
-/* ---------- output builders ---------- */
-function buildDocElement(){
-  const data=collect();
-  const el=document.createElement('div');
-  el.style.cssText='width:760px;padding:40px;background:#fff;font-family:Georgia,serif;color:#16222E;line-height:1.5';
-  let html=`<h1 style="font-size:22px;color:#102A43;border-bottom:3px solid #B5893C;padding-bottom:8px;margin:0 0 4px">The Colson Center — Board Candidate Recommendation</h1>
-    <div style="color:#697789;font-size:13px;margin-bottom:22px;font-family:Arial,sans-serif">Confidential &middot; Nominee: <strong>${escapeHtml(nomineeName())}</strong> &middot; Generated ${new Date().toLocaleString()}</div>`;
-  data.forEach(sec=>{
-    html+=`<h2 style="font-size:15px;color:#1F7A72;margin:24px 0 4px;border-bottom:1px solid #ddd;padding-bottom:4px;page-break-after:avoid">${sec.title}</h2><table style="width:100%;border-collapse:collapse">`;
-    sec.rows.forEach(([q,a])=>{ html+=`<tr><td style="width:36%;padding:7px 8px;vertical-align:top;font-size:12.5px;color:#697789;font-family:Arial,sans-serif;border-bottom:1px solid #eee">${escapeHtml(q)}</td><td style="padding:7px 8px;vertical-align:top;font-size:12.5px;border-bottom:1px solid #eee;white-space:pre-wrap">${a?escapeHtml(a):'—'}</td></tr>`; });
-    html+='</table>';
-  });
-  el.innerHTML=html; return el;
-}
-function buildDocHtml(){
-  const tmp=buildDocElement();
-  return `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Board Recommendation — ${escapeHtml(nomineeName())}</title></head><body style="max-width:800px;margin:30px auto">${tmp.innerHTML}</body></html>`;
-}
-document.getElementById('dlBtn').addEventListener('click',function(){
-  const btn=this,orig=btn.textContent;
-  if(typeof html2pdf==='undefined'){
-    const blob=new Blob([buildDocHtml()],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`colson-board-recommendation-${fileSlug()}.html`;a.click();URL.revokeObjectURL(a.href);return;
+/* ── download button ── */
+document.getElementById('dlBtn').addEventListener('click', async function () {
+  const btn = this; const orig = btn.textContent;
+  btn.textContent = 'Preparing PDF…'; btn.disabled = true;
+  try {
+    const blob = window._lastPdfBlob || await generatePdfBlob();
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fileName(); a.click(); URL.revokeObjectURL(a.href);
+  } catch (e) {
+    const w = window.open('', '_blank');
+    if (w) { w.document.write(buildDocHtml()); w.document.close(); }
   }
-  btn.textContent='Preparing PDF…';btn.disabled=true;
-  const el=buildDocElement();el.style.position='fixed';el.style.left='-10000px';el.style.top='0';document.body.appendChild(el);
-  html2pdf().set({margin:[12,10,14,10],filename:`colson-board-recommendation-${fileSlug()}.pdf`,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,backgroundColor:'#ffffff'},jsPDF:{unit:'mm',format:'letter',orientation:'portrait'},pagebreak:{mode:['css','legacy']}}).from(el).save().then(()=>{el.remove();btn.textContent=orig;btn.disabled=false;}).catch(()=>{el.remove();btn.textContent=orig;btn.disabled=false;alert('PDF generation failed. Use Print to save as PDF instead.');});
+  btn.textContent = orig; btn.disabled = false;
 });
-document.getElementById('printBtn').addEventListener('click',()=>{
-  const w=window.open('','_blank');if(!w){alert('Please allow pop-ups to print, or use Download PDF.');return;}
-  w.document.write(buildDocHtml());w.document.close();w.focus();setTimeout(()=>w.print(),350);
+
+document.getElementById('printBtn').addEventListener('click', () => {
+  const w = window.open('', '_blank'); if (!w) { alert('Please allow pop-ups to print.'); return; }
+  w.document.write(buildDocHtml()); w.document.close(); w.focus(); setTimeout(() => w.print(), 350);
 });
-function buildEmailBody(){
-  const data=collect();
-  let lines=['THE COLSON CENTER — BOARD CANDIDATE RECOMMENDATION','Confidential nomination','Nominee: '+nomineeName(),'Submitted: '+new Date().toLocaleString(),'======================================================',''];
-  data.forEach(sec=>{ lines.push('— '+sec.title.toUpperCase()+' —'); sec.rows.forEach(([q,a])=>{lines.push(q+':');lines.push('  '+(a||'—'));lines.push('');}); lines.push(''); });
+
+function buildEmailBody() {
+  const data = collect();
+  let lines = ['THE COLSON CENTER — BOARD CANDIDATE RECOMMENDATION', 'Confidential nomination', 'Nominee: ' + nomineeName(), 'Submitted: ' + new Date().toLocaleString(), '======================================================', ''];
+  data.forEach(sec => { lines.push('— ' + sec.title.toUpperCase() + ' —'); sec.rows.forEach(([q, a]) => { lines.push(q + ':'); lines.push('  ' + (a || '—')); lines.push(''); }); lines.push(''); });
   return lines.join('\n');
 }
-document.getElementById('emailBtn').addEventListener('click',()=>{
-  const subj=encodeURIComponent('Board Candidate Recommendation — '+nomineeName());
-  const body=encodeURIComponent(buildEmailBody());
-  window.location.href=`mailto:${RECIPIENT}?subject=${subj}&body=${body}`;
+document.getElementById('emailBtn').addEventListener('click', () => {
+  const subj = encodeURIComponent('Board Candidate Recommendation — ' + nomineeName());
+  const body = encodeURIComponent(buildEmailBody());
+  window.location.href = `mailto:${RECIPIENT}?subject=${subj}&body=${body}`;
 });
 
-/* ---------- autosave / restore ---------- */
-const STORAGE_KEY='cc_board_reco_v1';
-let storageOK=true;
-try{const t='__t__';localStorage.setItem(t,'1');localStorage.removeItem(t);}catch(e){storageOK=false;}
-function serializeForm(){const o={};form.querySelectorAll('input,select,textarea').forEach(el=>{if(!el.name)return;if(el.type==='checkbox'||el.type==='radio'){if(!Array.isArray(o[el.name]))o[el.name]=[];if(el.checked)o[el.name].push(el.value);}else o[el.name]=el.value;});return o;}
-function getState(){return {v:1,savedAt:Date.now(),fields:serializeForm()};}
-function applyState(st){if(!st||!st.fields)return;const f=st.fields;form.querySelectorAll('input,select,textarea').forEach(el=>{if(!el.name||!(el.name in f))return;const v=f[el.name];if(el.type==='checkbox'||el.type==='radio')el.checked=Array.isArray(v)&&v.includes(el.value);else el.value=v;});syncChoiceStyles();}
-function loadState(){try{const s=localStorage.getItem(STORAGE_KEY);return s?JSON.parse(s):null;}catch(e){return null;}}
-function clearProgress(){try{localStorage.removeItem(STORAGE_KEY);}catch(e){}const el=document.getElementById('saveStatus');if(el)el.classList.remove('show');}
-function updateSaveStatus(kind){const el=document.getElementById('saveStatus'),t=document.getElementById('saveStatusTxt');if(!el)return;el.classList.add('show');if(kind==='warn'){el.classList.add('warn');t.textContent='Auto-save off in this view — use "Save a backup file"';}else{el.classList.remove('warn');t.textContent='Progress saved · '+new Date().toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});}}
-function saveProgress(){if(!storageOK){updateSaveStatus('warn');return;}try{localStorage.setItem(STORAGE_KEY,JSON.stringify(getState()));updateSaveStatus('ok');}catch(e){updateSaveStatus('warn');}}
-let saveTimer=null;function debouncedSave(){clearTimeout(saveTimer);saveTimer=setTimeout(saveProgress,500);}
+/* ── autosave ── */
+const STORAGE_KEY = 'cc_board_reco_v1';
+let storageOK = true;
+try { const t = '__t__'; localStorage.setItem(t, '1'); localStorage.removeItem(t); } catch (e) { storageOK = false; }
+function serializeForm() { const o = {}; form.querySelectorAll('input,select,textarea').forEach(el => { if (!el.name) return; if (el.type === 'checkbox' || el.type === 'radio') { if (!Array.isArray(o[el.name])) o[el.name] = []; if (el.checked) o[el.name].push(el.value); } else o[el.name] = el.value; }); return o; }
+function getState() { return { v: 1, savedAt: Date.now(), fields: serializeForm() }; }
+function applyState(st) { if (!st || !st.fields) return; const f = st.fields; form.querySelectorAll('input,select,textarea').forEach(el => { if (!el.name || !(el.name in f)) return; const v = f[el.name]; if (el.type === 'checkbox' || el.type === 'radio') el.checked = Array.isArray(v) && v.includes(el.value); else el.value = v; }); syncChoiceStyles(); }
+function loadState() { try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+function clearProgress() { try { localStorage.removeItem(STORAGE_KEY); } catch (e) {} const el = document.getElementById('saveStatus'); if (el) el.classList.remove('show'); }
+function updateSaveStatus(kind) { const el = document.getElementById('saveStatus'), t = document.getElementById('saveStatusTxt'); if (!el) return; el.classList.add('show'); if (kind === 'warn') { el.classList.add('warn'); t.textContent = 'Auto-save off in this view — use "Save a backup file"'; } else { el.classList.remove('warn'); t.textContent = 'Progress saved · ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); } }
+function saveProgress() { if (!storageOK) { updateSaveStatus('warn'); return; } try { localStorage.setItem(STORAGE_KEY, JSON.stringify(getState())); updateSaveStatus('ok'); } catch (e) { updateSaveStatus('warn'); } }
+let saveTimer = null; function debouncedSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 500); }
 
-function showResumeBanner(saved){
-  const b=document.getElementById('resumeBanner');
-  const when=saved.savedAt?new Date(saved.savedAt).toLocaleString():'earlier';
-  b.innerHTML=`<p><strong>Welcome back.</strong> We restored a draft you saved ${when}.</p><button type="button" class="btn btn-ghost" id="startOverBtn">Start over</button>`;
-  b.style.display='flex';
-  document.getElementById('startOverBtn').onclick=()=>{clearProgress();form.reset();syncChoiceStyles();b.style.display='none';};
+function showResumeBanner(saved) {
+  const b = document.getElementById('resumeBanner');
+  const when = saved.savedAt ? new Date(saved.savedAt).toLocaleString() : 'earlier';
+  b.innerHTML = `<p><strong>Welcome back.</strong> We restored a draft you saved ${when}.</p><button type="button" class="btn btn-ghost" id="startOverBtn">Start over</button>`;
+  b.style.display = 'flex';
+  document.getElementById('startOverBtn').onclick = () => { clearProgress(); form.reset(); syncChoiceStyles(); b.style.display = 'none'; };
 }
 
-document.getElementById('saveFileBtn').addEventListener('click',()=>{
-  const blob=new Blob([JSON.stringify(getState(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='colson-recommendation-draft.json';a.click();URL.revokeObjectURL(a.href);
+document.getElementById('saveFileBtn').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(getState(), null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'colson-recommendation-draft.json'; a.click(); URL.revokeObjectURL(a.href);
 });
-document.getElementById('loadFileBtn').addEventListener('click',()=>document.getElementById('loadFileInput').click());
-document.getElementById('loadFileInput').addEventListener('change',ev=>{
-  const file=ev.target.files[0];if(!file)return;const r=new FileReader();
-  r.onload=()=>{try{applyState(JSON.parse(r.result));saveProgress();window.scrollTo({top:0,behavior:'smooth'});}catch(e){alert('Sorry — that file could not be read as a saved draft.');}ev.target.value='';};
+document.getElementById('loadFileBtn').addEventListener('click', () => document.getElementById('loadFileInput').click());
+document.getElementById('loadFileInput').addEventListener('change', ev => {
+  const file = ev.target.files[0]; if (!file) return; const r = new FileReader();
+  r.onload = () => { try { applyState(JSON.parse(r.result)); saveProgress(); window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { alert('Sorry — that file could not be read as a saved draft.'); } ev.target.value = ''; };
   r.readAsText(file);
 });
 
 /* init */
-const saved=storageOK?loadState():null;
-if(saved&&saved.fields&&Object.keys(saved.fields).length){applyState(saved);showResumeBanner(saved);}
+const saved = storageOK ? loadState() : null;
+if (saved && saved.fields && Object.keys(saved.fields).length) { applyState(saved); showResumeBanner(saved); }
 syncChoiceStyles();
-if(!storageOK)updateSaveStatus('warn');
+if (!storageOK) updateSaveStatus('warn');
 </script>
 </body>
 </html>
