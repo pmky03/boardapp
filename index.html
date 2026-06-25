@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <style>
   :root{
     --navy:#102A43;--navy-700:#1B3A5B;--navy-900:#0B1E30;--ink:#16222E;
@@ -119,6 +120,15 @@
     privateKey: `-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDFb/FqPWJwaZGg\nVdAEnkssgxk8omBONcG0rYzWncvPQgxXRyz2HPhzlzwEERYEil1PQExw5HudtqRb\nFdW+KjKWIqPY6W2LwnHHDmOh6ulCT1ZPI4RmIEn5Tg9YGPBtjpzv9bzBCOdOWGhw\n6i3mJs74xCHmMhJTFRWcET+1QconQOYZJ8VMajGs1IrfiL2snGIVsv09JWif24ye\n8IuOJo4M8EIlUVAU2HkMbQtH2v/FUW8K13+OWmzizr5bS1KBIOwVlhacWeJC3MV0\nByXg/NdHGd0NzFLFqaWtfwxewqikNvQVrJ//M8aQQgcFYGOeRE3ViF60F7OdVLNR\nUqDJ4HGVAgMBAAECggEAWutDZVSSNcjvlkGeEtpgLMXMQ9dUeP+ZTZ4T+qrctXsp\nWrG8mzNZGEW/DfJeTMX41St7aAtXf5ehVQ6XiMQ+2lNmV1ebKh5nLa7LI7+dHfuR\n98yXxj29QvB28W8+nHzteTUU8GGsvq/InKLCczdQ3U7Ye3x4YskVU/K/fzUmJe+V\n/b3+lTKl3nPP/T5DNZtpAPI6nOf/WSiTyQo1aNGeGPnvIc3kOiGoOtTlDacCDczK\nkpuTCiDsH5w1qA4+iQrXJs846MVSBYeaduEXnjzTMCKLQjduMS1Eh/Ibo6K0sJo5\ni1wbCWlLoZcqwNZln5oM8STp3vjz65j63WevUWekawKBgQDuP7hNqelZL+HssFFq\nC8+A8fwkpI3qL5Dxd+7p8TuboMHC8tkosjSi6M4ucLoQQCO/A7ypVAzqCGrBPiQ1\n961yKhD0gdQLakieiLQt1W4UWX03bze+tcc2OAvd7HjfToQiaBXecxR/SaEHHuoy\nG/r5TurwOaOqAANw0vN+v56GowKBgQDUJcu0QhWIL9gCMHgq/CXv5oGXiauDzomq\ngT1ne0rnEV8A6jtEAEf+FoOP/N8SJdKnVX7OmI+/3R+WUdoFYZwFdh40KKlMVdKs\nRQ+SE9dk50K+x+ORpMM56SNuhqkTti4ahpfcEn3tOuQGqkFcJ7U+xDD0yciqOBDi\nwYgx+3kCZwKBgQDAJUXH5QvcMSDdWgofI61TilXXW5tUzs3v4NEffb2cMxdx2ZfI\nGYkYBfgbPjDhYEk0CZiDW9UafnVSqoJbwAfzdfe8qmRQXIR6zze5a1NfOBkjtx/X\nQBWNJcB0V/3X4yPv99ADWv6h9cjXzFgG18gef0Y9Pc9AEMi1mnxksbfxTwKBgCW4\ntrjNi1CU2T7CaYuTHBfFD8PnKcUdA2N66XUt+gqODyt1eqZDuolWbXw7xVpPuV4h\nmJOZku3Vnpk24qJUUc6yyvoRRNEa7YPOH8+kkYcSi86qci9icYgpiTBM52Fm4lm7\nFuN9skBtWUBKI6cENHj9n4rXGkQSBgabzOC+Syz/AoGAH7lJ4v0Yp3X3ukr9gBpC\nMtKSggbpWTE3V06yVU+vS73rowxSbLWmjY788dJGulQ2He2wv/LKmFdBDvzdm2Ty\nns979v9y9VBBOrovvIaXOMtBlRDgFDVE5CaY0TuzP+lzrS0+f74HSJ4/xtt/8k6i\nWy9JHhtgKDpCjRpzkVch/ts=\n-----END PRIVATE KEY-----\n`,
     sharedDriveId: '0AJ0_EyeNpoTEUk9PVA'
   };
+
+  // ── EMAILJS CONFIGURATION ──
+  // Sign up free at https://emailjs.com, then fill in these three values.
+  // See the setup steps below in the comments.
+  const EMAILJS_CONFIG = {
+    publicKey:  'PASTE_PUBLIC_KEY_HERE',   // Account → General → Public Key
+    serviceId:  'PASTE_SERVICE_ID_HERE',   // Email Services → your service ID
+    templateId: 'PASTE_TEMPLATE_ID_HERE'   // Email Templates → your template ID
+  };
 </script>
 
 <div class="submit-overlay" id="submitOverlay">
@@ -172,7 +182,7 @@
         <div class="grid g2" style="margin-top:18px">
           <div class="field" data-label="Name"><label class="q" for="rName">Name<span class="req">*</span></label><input type="text" id="rName" name="Nominator — name" required></div>
           <div class="field" data-label="Role"><label class="q" for="rRole">Role<span class="req">*</span></label>
-            <select id="rRole" name="Nominator — role" required><option value=""></option><option>Board Member</option><option>Former Board Member</option><option>Senior Leadership Team (SLT)</option><option>Staff</option><option>Other</option></select></div>
+            <select id="rRole" name="Nominator — role" required><option value=""></option><option>Board Member</option><option>Former Board Member</option><option>Senior Leadership Team (SLT)</option></select></div>
         </div>
         <div class="grid g2">
           <div class="field" data-label="Relationship to nominee"><label class="q" for="rRel">Relationship to nominee<span class="req">*</span></label><input type="text" id="rRel" name="Nominator — relationship" required></div>
@@ -225,13 +235,21 @@
       </section>
 
       <section class="block" data-sec="Connection to The Colson Center">
-        <div class="num">Section 5 · Optional</div>
+        <div class="num">Section 5</div>
         <h2>Connection to the Colson Center</h2>
-        <p class="sublead">Keep this brief — optional.</p>
         <div class="field" data-label="Prior engagement with TCC or similar ministry"><label class="q" for="c1">Prior engagement with the Colson Center or a similar ministry?</label>
           <input type="text" id="c1" name="Prior engagement with TCC"></div>
-        <div class="field" data-label="Colson Fellow (Centurion)?"><label class="q" for="c2">Colson Fellow (Centurion), if applicable?</label>
-          <select id="c2" name="Colson Fellow (Centurion)"><option value=""></option><option>Yes — Colson Fellow</option><option>Yes — Centurion</option><option>No</option><option>Unsure</option></select></div>
+        <div class="field" data-label="Colson Fellow / Centurion">
+          <label class="q">Colson Fellow or Centurion?</label>
+          <div class="choices" style="margin-top:4px">
+            <label class="choice"><input type="checkbox" id="c2fellow" name="Colson Fellow" value="Yes — Colson Fellow"><span>Colson Fellow</span></label>
+            <label class="choice"><input type="checkbox" id="c2cent" name="Centurion" value="Yes — Centurion"><span>Centurion</span></label>
+          </div>
+        </div>
+        <div class="field" data-label="Colson Fellow / Centurion year" id="fellowYearField" style="display:none">
+          <label class="q" for="c2year">Year completed</label>
+          <input type="text" id="c2year" name="Colson Fellow / Centurion year" placeholder="e.g. 2018">
+        </div>
       </section>
 
       <section class="block" data-sec="Concerns or Watchouts">
@@ -262,8 +280,7 @@
           </label>
         </div>
         <div class="grid g2" style="margin-top:18px">
-          <div class="field" data-label="Submitted by"><label class="q" for="sig">Your name (confirmation)<span class="req">*</span></label><input type="text" id="sig" name="Submitted by" required></div>
-          <div class="field" data-label="Date"><label class="q" for="sdate">Date<span class="req">*</span></label><input type="date" id="sdate" name="Date" required></div>
+          <div class="field" data-label="Date"><label class="q" for="sdate">Date</label><input type="date" id="sdate" name="Date" readonly style="background:var(--teal-light);cursor:default"></div>
         </div>
         <div class="backup-row">
           <span class="lbl">Need to pause, or switch devices?</span>
@@ -301,7 +318,7 @@ const errBanner = document.getElementById('errBanner');
 const RECIPIENT = 'pmarra@colsoncenter.org';
 
 /* ── strengths ── */
-const STRENGTHS = ["Theology / Worldview","Finance / Audit","Governance / Board Experience","Development / Fundraising","Organizational Leadership","Legal / HR","Communications / Digital","Church Leadership","Investment / Financial Markets","Public / Cultural Engagement","Other"];
+const STRENGTHS = ["Theology / Worldview","Finance / Audit","Governance / Board Experience","Development / Fundraising","Organizational Leadership","Legal / HR","Communications / Digital Strategy","Church Leadership","Christian Education","Investment / Financial Markets","Public / Cultural Engagement","Other"];
 const sg = document.getElementById('strengthGrid');
 STRENGTHS.forEach(s => {
   const l = document.createElement('label'); l.className = 'choice';
@@ -310,7 +327,13 @@ STRENGTHS.forEach(s => {
 });
 
 function syncChoiceStyles() { form.querySelectorAll('.choice').forEach(c => { const i = c.querySelector('input'); if (i) c.classList.toggle('checked', i.checked); }); }
-form.addEventListener('change', e => { syncChoiceStyles(); if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid'); debouncedSave(); });
+form.addEventListener('change', e => { syncChoiceStyles(); if (e.target.classList.contains('invalid')) e.target.classList.remove('invalid'); debouncedSave();
+  // Show year field if either Fellow or Centurion is checked
+  const fellowChecked = document.getElementById('c2fellow')?.checked;
+  const centChecked = document.getElementById('c2cent')?.checked;
+  const yf = document.getElementById('fellowYearField');
+  if (yf) yf.style.display = (fellowChecked || centChecked) ? '' : 'none';
+});
 form.addEventListener('input', debouncedSave);
 
 /* ── collect form data ── */
@@ -325,6 +348,9 @@ function collect() {
       let val = '';
       if (checks.length && f.querySelector('input[name="Strengths"]')) {
         val = checks.filter(c => c.checked).map(c => c.value).join(', ');
+      } else if (checks.length && checks.length > 1) {
+        // Multi-checkbox group (e.g. Fellow/Centurion) — join checked values
+        val = checks.filter(c => c.checked).map(c => c.value).join(', ') || 'No';
       } else if (checks.length) {
         const c = checks[0]; val = c.checked ? (c.value || 'Confirmed') : '';
       } else if (radios.length) {
@@ -506,6 +532,20 @@ function setUploadStatus(type, html) {
   el.innerHTML = html;
 }
 
+/* ── email notification via EmailJS ── */
+async function sendNotificationEmail() {
+  const cfg = EMAILJS_CONFIG;
+  if (!cfg.publicKey || cfg.publicKey.startsWith('PASTE')) return; // skip if not configured
+  emailjs.init({ publicKey: cfg.publicKey });
+  await emailjs.send(cfg.serviceId, cfg.templateId, {
+    nominee_name:   nomineeName(),
+    nominator_name: document.getElementById('rName').value.trim() || 'Unknown',
+    submitted_date: new Date().toLocaleString(),
+    file_name:      fileName(),
+    to_email:       'pmarra@colsoncenter.org'
+  });
+}
+
 /* ── validation ── */
 function validate() {
   errBanner.classList.remove('show');
@@ -545,6 +585,8 @@ document.getElementById('submitBtn').addEventListener('click', async () => {
     window._lastPdfBlob = pdfBlob;
     overlayMsg.textContent = 'Uploading to Google Drive…';
     await uploadToDrive(pdfBlob, fileName());
+    overlayMsg.textContent = 'Sending notification…';
+    try { await sendNotificationEmail(); } catch(e) { console.warn('Email notification failed:', e); }
     clearProgress();
     overlay.classList.remove('show');
     form.style.display = 'none';
@@ -642,6 +684,9 @@ const saved=storageOK?loadState():null;
 if(saved&&saved.fields&&Object.keys(saved.fields).length){applyState(saved);showResumeBanner(saved);}
 syncChoiceStyles();
 if(!storageOK)updateSaveStatus('warn');
+// Autofill today's date
+const sdateEl = document.getElementById('sdate');
+if (sdateEl && !sdateEl.value) sdateEl.value = new Date().toISOString().slice(0,10);
 </script>
 </body>
 </html>
